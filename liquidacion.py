@@ -20,8 +20,6 @@ class Empleado(Persona):
 		self.categoria = categoria
 		self.antiguedad= antiguedad
 		self.presentismo = presentismo
-	def estadoEmpleado(self):
-		print("Nombre: {} \nEdad {} años\nCategoria: {} \nAntiguedad: {} años \n".format(self.nombre, self.edad, self.categoria,self.antiguedad))
 
 class Sueldo():
 	def __init__(self, categoria, antiguedad, presentismo):
