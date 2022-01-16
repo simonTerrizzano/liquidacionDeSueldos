@@ -142,9 +142,6 @@ CATEGORIALabel.grid(row=4,column=1,pady=10,padx=10)
 
 ANTIGUEDADLabel=Label(superiorFrame,text="ANTIGUEDAD:")
 ANTIGUEDADLabel.grid(row=5,column=1,pady=10,padx=10)
-
-PRESENTISMOLabel=Label(superiorFrame,text="PRESENTISMO:")
-PRESENTISMOLabel.grid(row=6,column=1,pady=10,padx=10)
 # ---------Entrys--------------------
 
 DNI=StringVar()
@@ -169,10 +166,6 @@ ANTIGUEDADEntry.grid(row=4,column=2,pady=10,padx=10)
 CATEGORIAEntry=Entry(superiorFrame, textvariable=CATEGORIA)
 CATEGORIAEntry.grid(row=5,column=2,pady=10,padx=10)
 
-presentismoRadio1=Radiobutton(superiorFrame,text="Liquidar Presentismo",variable=PRESENTISMO,value=True)
-presentismoRadio1.grid(row=6,column=2,pady=10,padx=10)
-presentismoRadio2=Radiobutton(superiorFrame,text="No Liquidar Presentismo",variable=PRESENTISMO,value=False)
-presentismoRadio2.grid(row=7,column=2,pady=10,padx=10)
 # ----------Buttons----------------
 createButton=Button(inferiorFrame,text="Create",command=crearRegistro)
 createButton.grid(row=1,column=1,pady=10,padx=10)

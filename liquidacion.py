@@ -88,7 +88,7 @@ def leerRegistro():
 				lista.append(int(usuario[4]))
 				lista.append(int(usuario[5]))
 				lista.append(int(usuario[6]))
-			empleado=Empleado(lista[3],lista[4],lista[0],lista[1],lista[2],lista[5])
+			empleado=Empleado(lista[4],lista[3],lista[0],lista[1],lista[2],lista[5])
 			sueldo=Sueldo(empleado.categoria,empleado.antiguedad,empleado.presentismo)
 			sueldo.liquidarSueldo()
 			miConexion.commit()
