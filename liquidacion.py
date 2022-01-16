@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 import sqlite3
 
-from cargaDeEmpleados import ANTIGUEDAD, CATEGORIA, NOMBRE
 
 
 
