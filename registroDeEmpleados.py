@@ -31,7 +31,8 @@ def conectarBBDD():
 def crearRegistro():
 	miConexion=sqlite3.connect("EMPLEADOS")
 	miCursor=miConexion.cursor()
-	miCursor.execute("INSERT INTO EMPLEADOS VALUES(NULL, '" + DNI.get() + "','" + NOMBRE.get() + "','" + EDAD.get() + "','" + CATEGORIA.get() + "','" + ANTIGUEDAD.get()+ "', NULL)")
+	datos=DNI.get(),NOMBRE.get(),EDAD.get(),CATEGORIA.get(),ANTIGUEDAD.get()
+	miCursor.execute("INSERT INTO EMPLEADOS VALUES(NULL,?,?,?,?,?,NULL)",(datos))
 	miConexion.commit()
 	messagebox.showinfo("CREATE_SQL","Se a insertado exitosamente su registro")
 
@@ -48,7 +49,6 @@ def leerRegistro():
 			EDAD.set(usuario[3])
 			CATEGORIA.set(usuario[4])
 			ANTIGUEDAD.set(usuario[5])
-			PRESENTISMO.set(int(usuario[6]))
 		miConexion.commit()
 	except sqlite3.OperationalError:
 		messagebox.showwarning("Campo vacío","Por favor rellene el campo DNI")
@@ -58,7 +58,8 @@ def leerRegistro():
 def actualizarRegistro():
 	miConexion=sqlite3.connect("EMPLEADOS")
 	miCursor=miConexion.cursor()
-	miCursor.execute("UPDATE EMPLEADOS SET NOMBRE='" + NOMBRE.get() + "', EDAD='" + EDAD.get() + "', CATEGORIA='" + CATEGORIA.get() + "', ANTIGUEDAD='" + ANTIGUEDAD.get() + "', PRESENTISMO=NULL'" + "' WHERE DNI=" + DNI.get())
+	datos=NOMBRE.get(),EDAD.get(),CATEGORIA.get(),ANTIGUEDAD.get()
+	miCursor.execute("UPDATE EMPLEADOS SET NOMBRE=?, EDAD=?, CATEGORIA=?, ANTIGUEDAD=?, PRESENTISMO=NULL WHERE DNI =" + DNI.get(), (datos))
 	miConexion.commit()
 	messagebox.showinfo("UPDATE_SQL","Se a actualizado exitosamente su registro")
 

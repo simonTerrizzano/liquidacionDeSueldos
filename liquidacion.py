@@ -3,8 +3,6 @@ from tkinter import messagebox
 import sqlite3
 
 
-
-
 # -------Clases-----------------------
 
 
@@ -32,9 +30,7 @@ class Sueldo():
 		self.presentismo = presentismo
 	def liquidarSueldo(self):
 
-		def descuentoSueldo(sueldo, porsentaje):
-			descuento = (sueldo/100) * porsentaje
-			return descuento
+		descuentoSueldo=lambda sueldo,porsentaje:(sueldo/100) * porsentaje
 
 		sueldoBase=sueldosCategorias[str(self.categoria)]
 		sueldoBruto=sueldoBase
@@ -42,7 +38,7 @@ class Sueldo():
 		cabeceraLabel.grid(row=1,column=3,pady=10,padx=10)
 		basicoLabel=Label(liquidacionFrame,text="+Basico:			"+ str(sueldoBase))
 		basicoLabel.grid(row=2,column=3,pady=10,padx=10)
-		if self.presentismo != 1:
+		if self.presentismo == 1:
 			sueldoBruto=sueldoBase+(sueldoBase/10)
 			presentismoLabel=Label(liquidacionFrame,text="+Presentismo: 		"+ str(sueldoBase/10))
 			presentismoLabel.grid(row=3,column=3,pady=10,padx=10)
@@ -106,7 +102,8 @@ def actualizarRegistro():
 	miConexion=sqlite3.connect("EMPLEADOS")
 	miCursor=miConexion.cursor()
 	try:
-		miCursor.execute("UPDATE EMPLEADOS SET PRESENTISMO='" + PRESENTISMO.get() + "' WHERE DNI=" + DNI.get())
+		datos=PRESENTISMO.get()
+		miCursor.execute("UPDATE EMPLEADOS SET PRESENTISMO=? WHERE DNI =" + DNI.get(), (datos))
 		miConexion.commit()
 	except sqlite3.OperationalError:
 		messagebox.showwarning("CAMPO ERRONEO","Por favor ingrese un DNI valido")
@@ -138,7 +135,7 @@ DNILabel.grid(row=1,column=1,pady=10,padx=10)
 
 DNI=StringVar()
 PRESENTISMO=StringVar()
-
+PRESENTISMO.set(0)
 DNIEntry=Entry(liquidacionFrame, textvariable=DNI)
 DNIEntry.grid(row=1,column=2,pady=10,padx=10)
 
@@ -155,5 +152,4 @@ liquidarButton.grid(row=5,column=1,pady=10,padx=10)
 
 
 
-PRESENTISMO.set(0)
 root.mainloop()
