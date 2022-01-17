@@ -29,6 +29,22 @@ def conectarBBDD():
 
 
 def crearRegistro():
+	try:
+		miConexion=sqlite3.connect("EMPLEADOS")
+		miCursor=miConexion.cursor()
+		miCursor.execute('''
+			CREATE TABLE EMPLEADOS(
+			ID INTEGER PRIMARY KEY AUTOINCREMENT,
+			DNI VARCHAR(20),
+			NOMBRE VARCHAR(30),
+			EDAD VARCHAR(20),
+			CATEGORIA VARCHAR(20),
+			ANTIGUEDAD VARCHAR(20),
+			PRESENTISMO VARCHAR(20)
+			)
+			''')
+	except sqlite3.OperationalError:
+		pass
 	miConexion=sqlite3.connect("EMPLEADOS")
 	miCursor=miConexion.cursor()
 	datos=DNI.get(),NOMBRE.get(),EDAD.get(),CATEGORIA.get(),ANTIGUEDAD.get()
